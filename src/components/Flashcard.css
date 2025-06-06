@@ -13,9 +13,9 @@
   box-shadow: 0 24px 10px rgba(0,0,0,25%);
 }
 
-.card:hover .card-inner{
+/* .card:hover .card-inner{
   transform: rotateY(180deg);
-}
+} */
 
 .card-front, .card-back{
   position: absolute;
@@ -36,3 +36,5 @@
   background: #EFEFEF;
   transform: rotateY(180deg);
 }
+
+

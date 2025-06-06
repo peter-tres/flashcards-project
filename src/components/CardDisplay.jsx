@@ -4,30 +4,72 @@ import FlashCard from './Flashcard';
 import trashcan from '../assets/trash-can-solid.svg'
 
 
-function CardDisplay(){
+
+function wrapInt(value, min, max) {
+  const range = max - min;
+  return ((value - min) % range + range) % range + min;
+}
+
+const createCard = ( question, answer) => ({
+    question,
+    answer
+
+});
+
+function deleteCard(){
+
+
+}
+
+
+
+function CardDisplay({mode}){
+    const [currentCard,setCurrentCard] = React.useState(0);
+    const [cards, setCards] = React.useState([createCard("","")]);
+
     return(
     <>
         <div className="row justify-content-center mb-5">
             <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
-            <button type="button" className="btn btn-primary"></button>
+            <button
+            onClick={()=> setCurrentCard(wrapInt(currentCard-1,0,cards.length))}
+            type="button" className="btn btn-primary"></button>
             </div>
             
+
+
             <div className="col-lg-8">
-                <FlashCard/>
+                <FlashCard card_data={cards[currentCard]}/>
             </div>
             
             <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
-            <button type="button" className="btn btn-primary"></button>
+            <button
+            onClick={()=> setCurrentCard(wrapInt(currentCard+1,0,cards.length))}
+            type="button" className="btn btn-primary"></button>
             </div>
 
 
+        </div>
+        <div className="row justify-content-center">
+            <p>{cards.length}</p>
         </div>
         <div className="row justify-content-center mt-5">
             <div className="col-2 col-lg-2 d-flex d-lg-none justify-content-center align-items-center">
             <button type="button" className="btn btn-primary"></button>
             </div>
             <div className="col-2 col-lg-2 d-flex justify-content-center align-items-center">
-                <img src={trashcan} className="trashcan-icon"></img>
+                <button 
+                onClick = {() => {
+                    setCards(
+                        cards.filter((element, index) =>{
+                            return index != currentCard;
+                        })
+                    )
+
+                }}
+                type="button" className="btn btn-primary">
+                    <img src={trashcan} className="trashcan-icon"></img>
+                </button>
             </div>
             <div className="col-2 col-lg-2 d-flex d-lg-none justify-content-center align-items-center">
             <button type="button" className="btn btn-primary"></button>

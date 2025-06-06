@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -7,20 +8,24 @@ import Header from './components/Header'
 import ActionPanel from './components/ActionPanel'
 import CardDisplay from './components/CardDisplay'
 
+import {Modes} from './Modes'
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [mode, setMode] = React.useState(Modes.STUDY);
 
   return (
     <>
-    <main className="container min-vh-100">
+    <main className="container">
     <Header/>
-    <div className="row h-100">
+    <div className="row main-row">
       <div className="col-12">
-      <ActionPanel/>
+      <ActionPanel mode={mode} setMode={setMode}/>
 
       </div>
-      <div className="col-12">
-      <CardDisplay/>
+      <div className="col-12 ">
+      <CardDisplay mode={mode}/>
+
 
       </div>
     </div>
