@@ -1,0 +1,9 @@
+.social-btn{
+    width:35px;
+    transition: transform 0.5s ease;
+    color: #36404E;
+}
+
+.social-btn:hover{
+    transform: scale(1.25);
+}
