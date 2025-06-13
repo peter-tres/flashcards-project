@@ -27,6 +27,8 @@ function CardDisplay({mode}){
     const [currentCard,setCurrentCard] = React.useState(0);
     const [cards, setCards] = React.useState([createCard("","")]);
 
+
+
     return(
     <>
         <div className="row justify-content-center mb-5">
@@ -39,7 +41,7 @@ function CardDisplay({mode}){
 
 
             <div className="col-lg-8">
-                <FlashCard card_data={cards[currentCard]}/>
+                <FlashCard/>
             </div>
             
             <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
@@ -52,6 +54,7 @@ function CardDisplay({mode}){
         </div>
         <div className="row justify-content-center">
             <p>{cards.length}</p>
+            <p>{mode}</p>
         </div>
         <div className="row justify-content-center mt-5">
             <div className="col-2 col-lg-2 d-flex d-lg-none justify-content-center align-items-center">
