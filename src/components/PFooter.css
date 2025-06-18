@@ -1,6 +1,26 @@
 .footer{
-    background-color: whitesmoke;
+    background-color: transparent;
+
 }
+
+
+.border-gradient {
+  border: none !important;
+  border-top: 2px solid transparent !important;
+  position: relative;
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: radial-gradient(circle at center, gainsboro 0%, transparent 90%);
+
+}
+
 
 .social-btn{
     width: 100px;

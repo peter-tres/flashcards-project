@@ -6,3 +6,7 @@ main{
   min-height: 80vh;
 
 }
+
+#root{
+  background-color: white;
+}

@@ -6,8 +6,8 @@ import {logos,icons} from '../assets/images'
 
 function PFooter(){
     return(
-        <div className="footer pb-4 mt-5">
-            <div className="row w-100">
+        <div className="footer pb-4 mt-5 border-top border-dark border-gradient">
+            <div className="row w-100 mt-2">
                 <div className="col d-flex align-items-end">
                     <div className="container-fluid d-flex justify-content-center gap-4 pt-4">
                         <small>© 2025 Peter M</small>
