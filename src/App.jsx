@@ -19,7 +19,7 @@ function App() {
     <main className="container">
     <Header/>
     <div className="row main-row d-flex">
-      <div className="col-12">
+      <div className="col-12 mb-5">
       <ActionPanel mode={mode} setMode={setMode}/>
       </div>
       <div className="col-12">

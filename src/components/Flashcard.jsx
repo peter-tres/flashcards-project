@@ -8,6 +8,7 @@ import SliderCheckbox from './SliderCheckbox';
 function FlashCard({}){
     const [isEdit,setEdit] = React.useState(false);
     const [cardQuestion,setCardQuestion] = React.useState("");
+    const [cardFlip, setCardFlip] = React.useState(false);
 
     const toggleClick = () =>{
         setEdit(!isEdit);
@@ -19,11 +20,15 @@ function FlashCard({}){
         setCardQuestion(e.target.value);
     }
 
+    const handleCardClick = () =>{
+        console.log("Flipped: " + cardFlip);
+        setCardFlip(!cardFlip);
+    }
 
     return(
         <div className="col-12 h-100">
-            <div className="card h-100">
-                <div className="card-inner">
+            <div onClick={handleCardClick} className="card h-100">
+                <div className={`card-inner ${cardFlip? "flip-transform":""} ` } >
 
                     <div className="card-front">
                         <div className="row w-100 h-100 px-5 py-5 d-flex align-items-end">

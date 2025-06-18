@@ -15,9 +15,9 @@
   border-radius: 20px;
 }
 
-/* .card:hover .card-inner{
+.flip-transform{
   transform: rotateY(180deg);
-} */
+}
 
 .card-front, .card-back{
   position: absolute;
