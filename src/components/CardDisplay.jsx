@@ -1,7 +1,7 @@
 import React from 'react'
 import './CardDisplay.css'
 import FlashCard from './Flashcard';
-import trashcan from '../assets/trash-can-solid.svg'
+import { logos, icons } from '../assets/images';
 
 
 
@@ -23,10 +23,12 @@ function deleteCard(){
 
 
 
-function CardDisplay({mode}){
+function CardDisplay({}){
     const [currentCard,setCurrentCard] = React.useState(0);
     const [cards, setCards] = React.useState([createCard("","")]);
+    
 
+    
     console.log(cards, cards.length);
 
     return(
@@ -54,17 +56,24 @@ function CardDisplay({mode}){
 
         </div>
         <div className="row justify-content-center">
-            <div className="col"></div>
-            <div className="col">
-                <div className="row">
-                    <div className="col-2 d-flex justify-content-center"><button type="button" className="btn btn-primary"></button></div>
-                    <div className="col-8 d-flex justify-content-center">
-                        <p className=""> {currentCard} / {cards.length}</p>
+
+            <div className="col-7">
+                <div className="row d-flex align-items-center">
+                    <div className="col px-0 d-flex justify-content-center">
+                        <button type="button" className={"btn arrow-button flipped"} disabled>
+                            { currentCard == 0? React.cloneElement(icons.arrowIcon, { className: 'arrow-disabled'}) : icons.arrowIcon}
+                        </button>
                     </div>
-                    <div className="col-2 d-flex justify-content-center"><button type="button" className="btn btn-primary"></button></div>
+                    <div className="col-4 d-flex justify-content-center">
+                        <p className="mt-3"> {currentCard+1} / {cards.length}</p>
+                    </div>
+                    <div className="col px-0 d-flex justify-content-center">
+                        <button type="button" className="btn arrow-button">
+                            {React.cloneElement(icons.arrowIcon, {style: {color: 'dimgray'}})}
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div className="col"></div>
             {/* <p>{cards.length}</p>
             <p>{mode}</p> */}
         </div>
@@ -78,15 +87,16 @@ function CardDisplay({mode}){
             <div className="col-2 col-lg-2 d-flex justify-content-center align-items-center">
                 <button 
                 onClick = {() => {
-                    setCards(
-                        cards.filter((element, index) =>{
-                            return index != currentCard;
-                        })
-                    )
-
+                    if (cards.length > 1){
+                        setCards(
+                            cards.filter((element, index) =>{
+                                return index != currentCard;
+                            })
+                        )
+                    }
                 }}
-                type="button" className="btn btn-primary">
-                    <img src={trashcan} className="trashcan-icon"></img>
+                type="button" className="btn trashcan-button">
+                    {React.cloneElement(icons.trashcanIcon, {style: {color: 'whitesmoke'}})}
                 </button>
             </div>
 

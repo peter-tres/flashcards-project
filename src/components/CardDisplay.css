@@ -1,5 +1,49 @@
-.trashcan-icon{
-    height: 40px;
+.trashcan-button, .trashcan-button:focus{
+  min-width: 60px;
+  min-height: 60px;
+  background-color: lightcoral;
+  border-color: transparent !important;
+}
+
+
+.trashcan-button:hover{
+  background-color: rgb(243, 160, 160);
+}
+
+.trashcan-button:active{
+  background-color: firebrick !important;
+  transform: scale(0.95);
+}
+
+.arrow-button, .arrow-button:focus{
+  min-width: 65px;
+  min-height: 65px;
+  background-color: white;
+  border-radius: 50%;
+  border-color: gainsboro !important;
+  border-width: 4px;
+}
+
+.arrow-button:hover{
+  background-color: whitesmoke;
+}
+
+.arrow-button:active{
+  transform: scale(0.95);
+}
+
+
+.flipped{
+  transform: scaleX(-1);
+}
+
+.arrow-disabled, .arrow-disabled:hover, .arrow-disabled:active {
+  color: gainsboro;
+}
+
+.btn:disabled, .btn.disabled{
+  border-color: gainsboro;
+  border-width: 4px;
 }
 
 .empty-card{

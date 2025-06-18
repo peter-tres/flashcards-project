@@ -35,7 +35,7 @@
 }
 
 .card-back{
-  background: #EFEFEF;
+  background: white;
   transform: rotateY(180deg);
 }
 

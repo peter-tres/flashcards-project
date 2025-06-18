@@ -18,12 +18,11 @@ function App() {
     <>
     <main className="container">
     <Header/>
-    <div className="row main-row">
+    <div className="row main-row d-flex">
       <div className="col-12">
       <ActionPanel mode={mode} setMode={setMode}/>
-
       </div>
-      <div className="col-12 ">
+      <div className="col-12">
       <CardDisplay mode={mode}/>
 
 

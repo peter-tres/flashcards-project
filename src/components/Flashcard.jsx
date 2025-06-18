@@ -6,10 +6,8 @@ import SliderCheckbox from './SliderCheckbox';
 
 
 function FlashCard({}){
-    const [isEdit,setEdit] = useState(false);
-
-    let question = "Placeholder Question"
-
+    const [isEdit,setEdit] = React.useState(false);
+    const [cardQuestion,setCardQuestion] = React.useState("");
 
     const toggleClick = () =>{
         setEdit(!isEdit);
@@ -18,7 +16,7 @@ function FlashCard({}){
 
     const handleChange = (e) => {
         console.log(e.target.value);
-
+        setCardQuestion(e.target.value);
     }
 
 
@@ -34,11 +32,12 @@ function FlashCard({}){
                                 <input
                                 className="w-100 form-control text-center"
                                 type="text"
-                                placeholder={question} onChange={handleChange}></input>
+                                placeholder="Type your question here"
+                                value={cardQuestion} onChange={handleChange}></input>
                             </div>
 
                             :
-                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{question}</p>
+                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{cardQuestion ? cardQuestion : ". . ."}</p>
                             }
 
                             <div className="position-absolute">

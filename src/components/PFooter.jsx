@@ -2,11 +2,11 @@ import React from 'react';
 import './PFooter.css';
 import './SocialBtn'
 import SocialBtn from './SocialBtn';
-import {logos} from '../assets/images'
+import {logos,icons} from '../assets/images'
 
 function PFooter(){
     return(
-        <div className="footer pb-4">
+        <div className="footer pb-4 mt-5">
             <div className="row w-100">
                 <div className="col d-flex align-items-end">
                     <div className="container-fluid d-flex justify-content-center gap-4 pt-4">
