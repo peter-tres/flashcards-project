@@ -2,6 +2,7 @@
 
 .card{
     border: none;
+
 }
 
 .card-inner{
@@ -10,7 +11,8 @@
   height: 400px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 24px 10px rgba(0,0,0,25%);
+  box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 10%);
+  border-radius: 20px;
 }
 
 /* .card:hover .card-inner{
@@ -25,11 +27,11 @@
   display:flex;
   align-items: center;
   justify-content: center;
-
+  border-radius: 20px;
 }
 
 .card-front{
-  background: #EFEFEF;
+  background: white;
 }
 
 .card-back{

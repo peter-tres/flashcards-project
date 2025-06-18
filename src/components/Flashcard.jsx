@@ -8,6 +8,9 @@ import SliderCheckbox from './SliderCheckbox';
 function FlashCard({}){
     const [isEdit,setEdit] = useState(false);
 
+    let question = "Placeholder Question"
+
+
     const toggleClick = () =>{
         setEdit(!isEdit);
 
@@ -27,15 +30,15 @@ function FlashCard({}){
                     <div className="card-front">
                         <div className="row w-100 h-100 px-5 py-5 d-flex align-items-end">
                             {isEdit?
-                            <div className="row w-100 h-100 px-5 py-5 d-flex align-items-center">
+                            <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
                                 <input
-                                className="w-100 form-control"
+                                className="w-100 form-control text-center"
                                 type="text"
-                                placeholder="" onChange={handleChange}></input>
+                                placeholder={question} onChange={handleChange}></input>
                             </div>
 
                             :
-                            <h1 className="w-100 h-100 text-center d-flex align-items-center justify-content-center">Question</h1>
+                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{question}</p>
                             }
 
                             <div className="position-absolute">
