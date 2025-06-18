@@ -22,7 +22,9 @@ function FlashCard({}){
 
     const handleCardClick = () =>{
         console.log("Flipped: " + cardFlip);
-        setCardFlip(!cardFlip);
+        if (!isEdit){
+            setCardFlip(!cardFlip);
+        }
     }
 
     return(
