@@ -6,8 +6,9 @@ import SliderCheckbox from './SliderCheckbox';
 
 
 function FlashCard({}){
-    const [isEdit,setEdit] = React.useState(false);
-    const [cardQuestion,setCardQuestion] = React.useState("");
+    const [isEdit, setEdit] = React.useState(false);
+    const [cardQuestion, setCardQuestion] = React.useState("");
+    const [cardAnswer, setCardAnswer] = React.useState("");
     const [cardFlip, setCardFlip] = React.useState(false);
 
     const toggleClick = () =>{
@@ -15,13 +16,16 @@ function FlashCard({}){
 
     }
 
-    const handleChange = (e) => {
-        console.log(e.target.value);
-        setCardQuestion(e.target.value);
+    const handleChange = (e, side) => {
+        if (side == "question"){
+            setCardQuestion(e.target.value);
+        }
+        else if (side == "answer"){
+            setCardAnswer(e.target.value);
+        }
     }
 
     const handleCardClick = () =>{
-        console.log("Flipped: " + cardFlip);
         if (!isEdit){
             setCardFlip(!cardFlip);
         }
@@ -40,7 +44,7 @@ function FlashCard({}){
                                 className="w-100 form-control text-center"
                                 type="text"
                                 placeholder="Type your question here"
-                                value={cardQuestion} onChange={handleChange}></input>
+                                value={cardQuestion} onChange={(e) => handleChange(e, "question")}></input>
                             </div>
 
                             :
@@ -55,7 +59,26 @@ function FlashCard({}){
                     </div>
 
                     <div className="card-back">
-                        <p className="fs-4">Answer</p>
+                        <div className="row w-100 h-100 px-5 py-5 d-flex align-items-end">
+                            {isEdit?
+                            <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
+                                <input
+                                className="w-100 form-control text-center"
+                                type="text"
+                                placeholder="Type your answer here"
+                                value={cardAnswer} onChange={(e) => handleChange(e, "answer")}></input>
+                            </div>
+
+                            :
+                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{cardAnswer ? cardAnswer : ". . ."}</p>
+                            }
+
+                            <div className="position-absolute">
+                                <SliderCheckbox event={toggleClick}/>
+                            </div>
+                            
+                        </div>
+                        {/* <p className="fs-4">Answer</p> */}
                     </div>
 
 

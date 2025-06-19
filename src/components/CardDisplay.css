@@ -15,10 +15,28 @@
   transform: scale(0.95);
 }
 
+.add-button, .add-button:focus{
+  min-width: 60px;
+  min-height: 60px;
+  background-color: cornflowerblue;
+  border-color: transparent !important;
+}
+
+.add-button:hover{
+  background-color: rgb(135, 174, 245);
+}
+
+.add-button:active{
+  background-color: dodgerblue !important;
+  transform: scale(0.95);
+}
+
+
 .arrow-button, .arrow-button:focus{
   min-width: 65px;
   min-height: 65px;
   background-color: white;
+  color:dimgray;
   border-radius: 50%;
   border-color: gainsboro !important;
   border-width: 4px;
@@ -30,11 +48,6 @@
 
 .arrow-button:active{
   transform: scale(0.95);
-}
-
-
-.flipped{
-  transform: scaleX(-1);
 }
 
 .arrow-disabled, .arrow-disabled:hover, .arrow-disabled:active {

@@ -31,13 +31,15 @@
   width: 26px;
 }
 
+
 input:checked + .slider {
-  background-color: #66bb6a;
+  background-color: #6ccead;
 }
 
 input:checked + .slider:before {
   transform: translateX(26px);
 }
+
 
 .slider.round {
   border-radius: 34px;
