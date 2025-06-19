@@ -5,23 +5,23 @@ import SliderCheckbox from './SliderCheckbox';
 
 
 
-function FlashCard({}){
+function FlashCard({cards,index, setter}){
     const [isEdit, setEdit] = React.useState(false);
-    const [cardQuestion, setCardQuestion] = React.useState("");
-    const [cardAnswer, setCardAnswer] = React.useState("");
     const [cardFlip, setCardFlip] = React.useState(false);
-
+    let card_info = cards[index];
+    
     const toggleClick = () =>{
         setEdit(!isEdit);
 
     }
+    
 
     const handleChange = (e, side) => {
         if (side == "question"){
-            setCardQuestion(e.target.value);
+            setter("question", e.target.value)
         }
         else if (side == "answer"){
-            setCardAnswer(e.target.value);
+            setter("answer", e.target.value);
         }
     }
 
@@ -44,11 +44,11 @@ function FlashCard({}){
                                 className="w-100 form-control text-center"
                                 type="text"
                                 placeholder="Type your question here"
-                                value={cardQuestion} onChange={(e) => handleChange(e, "question")}></input>
+                                value={card_info.question} onChange={(e) => handleChange(e, "question")}></input>
                             </div>
 
                             :
-                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{cardQuestion ? cardQuestion : ". . ."}</p>
+                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{card_info.question ? card_info.question : ". . ."}</p>
                             }
 
                             <div className="position-absolute">
@@ -66,11 +66,11 @@ function FlashCard({}){
                                 className="w-100 form-control text-center"
                                 type="text"
                                 placeholder="Type your answer here"
-                                value={cardAnswer} onChange={(e) => handleChange(e, "answer")}></input>
+                                value={card_info.answer} onChange={(e) => handleChange(e, "answer")}></input>
                             </div>
 
                             :
-                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{cardAnswer ? cardAnswer : ". . ."}</p>
+                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{card_info.answer ? card_info.answer : ". . ."}</p>
                             }
 
                             <div className="position-absolute">

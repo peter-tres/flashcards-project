@@ -8,10 +8,6 @@ function clamp(num, min, max) {
     return Math.min(Math.max(num,min),max);
 }
 
-function wrapInt(value, min, max) {
-  const range = max - min;
-  return ((value - min) % range + range) % range + min;
-}
 
 const createCard = ( question, answer) => ({
     question,
@@ -19,25 +15,28 @@ const createCard = ( question, answer) => ({
 
 });
 
-function deleteCard(){
 
-
-}
-
-let nextId = 0;
 function CardDisplay({}){
+    const [cards, setCards] = React.useState([createCard("","")]);
     const [currentCard,setCurrentCard] = React.useState(0);
-    const [cards, setCards] = React.useState([createCard((nextId++).toString(),"")]);
-    
 
     const handleArrowClick = (e,update) => {
-
         setCurrentCard(clamp(currentCard+update,0,cards.length-1));
     }
 
-    
-    console.log(cards, cards.length);
-    console.log(cards[currentCard]);
+    const updateCurrentCard = (k,v) => {
+        console.log(k,v);
+        console.log(cards);
+        setCards(cards.map((c,i) =>{
+            if (i == currentCard){
+                return {...c, [k]:v};
+                }
+            else{
+                return c;
+                }
+            })
+        )
+    }
 
     return(
     <>
@@ -50,10 +49,8 @@ function CardDisplay({}){
             type="button" className="btn btn-primary"></button>
             </div> */}
             
-
-
             <div className="col-lg-8">
-                <FlashCard/>
+                <FlashCard cards={cards} index={currentCard} setter={updateCurrentCard} />
             </div>
             
             {/* <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
@@ -115,7 +112,7 @@ function CardDisplay({}){
                     {React.cloneElement(icons.trashcanIcon, {style: {color: 'whitesmoke'}})}
                 </button>
                 <button 
-                onClick = { () => {setCards([...cards,createCard((nextId++).toString(),"")])}}
+                onClick = { () => {setCards([...cards,createCard("","")])}}
                 type="button" className="btn add-button">
                     {React.cloneElement(icons.plusIcon, {style: {color: 'whitesmoke'}})}
                 </button>
