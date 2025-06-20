@@ -41,14 +41,18 @@ function FlashCard({cards,index, setter}){
                             {isEdit?
                             <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
                                 <input
-                                className="w-100 form-control text-center"
+                                className="w-100 form-control text-center fs-3"
                                 type="text"
                                 placeholder="Type your question here"
                                 value={card_info.question} onChange={(e) => handleChange(e, "question")}></input>
                             </div>
 
                             :
-                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{card_info.question ? card_info.question : ". . ."}</p>
+                            <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 overflow-auto" >
+                                <p className="text-center text-wrap mb-0 w-100 fs-3">
+                                    {card_info.question ? card_info.question : ". . ."}
+                                </p>
+                            </div>
                             }
 
                             <div className="position-absolute">
@@ -63,14 +67,18 @@ function FlashCard({cards,index, setter}){
                             {isEdit?
                             <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
                                 <input
-                                className="w-100 form-control text-center"
+                                className="w-100 form-control text-center fs-3"
                                 type="text"
                                 placeholder="Type your answer here"
                                 value={card_info.answer} onChange={(e) => handleChange(e, "answer")}></input>
                             </div>
 
                             :
-                            <p className="w-100 h-100 text-center d-flex align-items-center justify-content-center">{card_info.answer ? card_info.answer : ". . ."}</p>
+                            <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 overflow-auto" >
+                                <p className="text-center text-wrap mb-0 w-100 fs-3">
+                                    {card_info.answer ? card_info.answer : ". . ."}
+                                </p>
+                            </div>
                             }
 
                             <div className="position-absolute">

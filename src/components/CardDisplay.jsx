@@ -19,10 +19,25 @@ const createCard = ( question, answer) => ({
 function CardDisplay({}){
     const [cards, setCards] = React.useState([createCard("","")]);
     const [currentCard,setCurrentCard] = React.useState(0);
+    const [doRight, setRight] = React.useState(false);
+    const [doLeft, setLeft] = React.useState(false);
 
     const handleArrowClick = (e,update) => {
         setCurrentCard(clamp(currentCard+update,0,cards.length-1));
+        console.log(update);
+        if (update < 0){
+            setLeft(true)
+
+            setTimeout(() => setLeft(false), 150);
+        }
+        else{
+            setRight(true)
+
+            setTimeout( () => setRight(false), 150);
+        }
+
     }
+
 
     const updateCurrentCard = (k,v) => {
         console.log(k,v);
@@ -49,7 +64,7 @@ function CardDisplay({}){
             type="button" className="btn btn-primary"></button>
             </div> */}
             
-            <div className="col-lg-8">
+            <div className={`col-lg-8 ${doLeft? "slide-left": ""} ${doRight? "slide-right": ""}`}>
                 <FlashCard cards={cards} index={currentCard} setter={updateCurrentCard} />
             </div>
             

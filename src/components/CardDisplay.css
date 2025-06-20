@@ -69,3 +69,34 @@
   height: 400px;
   background-color: whitesmoke;
 }
+
+@keyframes slide-right{
+  0%
+  {
+    transform: translateX(85px) rotateZ(-5deg);
+  }
+  100%
+  {
+    transform: translateX(0px) rotateZ(0deg);
+  }
+}
+
+.slide-right{
+  animation: slide-right 0.1s ease 1 forwards
+}
+
+
+@keyframes slide-left{
+  0%
+  {
+    transform: translateX(-85px) rotateZ(5deg);
+  }
+  100%
+  {
+    transform: translateX(0px) rotateZ(0deg);
+  }
+}
+
+.slide-left{
+  animation: slide-left 0.1s ease 1 forwards
+}

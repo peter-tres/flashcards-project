@@ -19,7 +19,7 @@
 }
 
 .flip-transform{
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 .card-front, .card-back{
@@ -39,7 +39,7 @@
 
 .card-back{
   background: white;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 
 
