@@ -8,11 +8,9 @@ import Header from './components/Header'
 import ActionPanel from './components/ActionPanel'
 import CardDisplay from './components/CardDisplay'
 
-import {Modes} from './Modes'
 
 
 function App() {
-  const [mode, setMode] = React.useState(Modes.STUDY);
 
 
   const loadData = () => {
@@ -26,7 +24,7 @@ function App() {
   }
 
 
-  
+
 
     useEffect( () => {
       loadData();
@@ -39,10 +37,10 @@ function App() {
     <Header/>
     <div className="row main-row d-flex">
       <div className="col-12 mb-5">
-      <ActionPanel mode={mode} setMode={setMode}/>
+      <ActionPanel/>
       </div>
       <div className="col-12">
-      <CardDisplay mode={mode}/>
+      <CardDisplay/>
       </div>
     </div>
 

@@ -39,9 +39,6 @@ function CardDisplay({}){
 
     }
 
-    // localStorage.setItem("key", JSON.stringify(cards));
-
-
 
     // Setter to update a value inside of the flashcard. Passed into the
     // flashcard component
@@ -62,21 +59,11 @@ function CardDisplay({}){
 
         <div className="row justify-content-center mb-5">
             
-            {/* <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
-            <button
-            onClick={()=> setCurrentCard(wrapInt(currentCard-1,0,cards.length))}
-            type="button" className="btn btn-primary"></button>
-            </div> */}
             
             <div className={`col-lg-8 ${doLeft? "slide-left": ""} ${doRight? "slide-right": ""}`}>
                 <FlashCard cards={cards} index={currentCard} setter={updateCurrentCard} />
             </div>
             
-            {/* <div className="d-none d-lg-flex col-lg-2 d-flex justify-content-center align-items-center">
-            <button
-            onClick={()=> setCurrentCard(wrapInt(currentCard+1,0,cards.length))}
-            type="button" className="btn btn-primary"></button>
-            </div> */}
 
 
         </div>
@@ -105,15 +92,12 @@ function CardDisplay({}){
                     </div>
                 </div>
             </div>
-            {/* <p>{cards.length}</p>
-            <p>{mode}</p> */}
+
         </div>
 
         <div className="row justify-content-center mt-5">
 
-            {/* <div className="col-2 col-lg-2 d-flex d-lg-none justify-content-center align-items-center">
-            <button type="button" className="btn btn-primary"></button>
-            </div> */}
+
 
             <div className="col-2 col-lg-2 d-flex justify-content-center align-items-center gap-5">
                 <button 
@@ -144,9 +128,6 @@ function CardDisplay({}){
                 </button>
             </div>
 
-            {/* <div className="col-2 col-lg-2 d-flex d-lg-none justify-content-center align-items-center">
-            <button type="button" className="btn btn-primary"></button>
-            </div> */}
 
         </div>
     </>

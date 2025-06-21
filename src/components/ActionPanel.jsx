@@ -1,9 +1,8 @@
 import React from 'react'
 import './ActionPanel.css'
-import {Modes} from '../Modes'
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function ActionPanel({mode, setMode}){
+function ActionPanel({}){
 
     const set_keys = ['Set1', 'Set2', 'Set3']
 
@@ -15,20 +14,6 @@ function ActionPanel({mode, setMode}){
     return(
     <>
 
-
-
-        {/* <div className="row">
-            <button
-            onClick={() => setMode(Modes.STUDY)}
-            type="button" className="btn btn-light btn-custom mx-auto">Study</button>
-        </div> */}
-        {/* <div className="row">
-            <button
-            onClick={() => setMode(Modes.CREATE)}
-            type="button" className="btn btn-light btn-custom mx-auto">Create</button>
-        </div> */}
-
-        
 
         <div className="row">
             <Dropdown className="d-flex" onSelect={handleSelectedSet}>
