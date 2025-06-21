@@ -8,5 +8,22 @@
 
 .btn-custom:hover{
     font-weight: bold;
-    background-color: #f3f3f3;
+    background-color: whitesmoke;
+}
+
+.btn-custom:active{
+    background-color: whitesmoke !important;
+}
+
+.centered-menu{
+    left: 50% !important;
+    transform: translateX(-50%) translateY(40px) !important;
+
+}
+
+.button-activate:active{
+    background-color: whitesmoke;
+    color: black;
+    font-weight: bold;
+
 }

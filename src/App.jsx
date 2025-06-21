@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -14,6 +14,25 @@ import {Modes} from './Modes'
 function App() {
   const [mode, setMode] = React.useState(Modes.STUDY);
 
+
+  const loadData = () => {
+    console.log("Load data");
+
+
+  }
+
+  const saveData = () => {
+    console.log("Save data")
+  }
+
+
+  
+
+    useEffect( () => {
+      loadData();
+    }, []);
+
+
   return (
     <>
     <main className="container">
@@ -24,8 +43,6 @@ function App() {
       </div>
       <div className="col-12">
       <CardDisplay mode={mode}/>
-
-
       </div>
     </div>
 

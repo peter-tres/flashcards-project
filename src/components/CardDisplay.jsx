@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
 import './CardDisplay.css'
 import FlashCard from './Flashcard';
 import { logos, icons } from '../assets/images';
@@ -17,14 +17,15 @@ const createCard = ( question, answer) => ({
 
 
 function CardDisplay({}){
-    const [cards, setCards] = React.useState([createCard("","")]);
-    const [currentCard,setCurrentCard] = React.useState(0);
-    const [doRight, setRight] = React.useState(false);
-    const [doLeft, setLeft] = React.useState(false);
+    const [cards, setCards] = useState([createCard("","")]);
+    const [currentCard,setCurrentCard] = useState(0);
+    const [doRight, setRight] = useState(false);
+    const [doLeft, setLeft] = useState(false);
 
+
+    // Left and right arrows to flick through cards
     const handleArrowClick = (e,update) => {
         setCurrentCard(clamp(currentCard+update,0,cards.length-1));
-        console.log(update);
         if (update < 0){
             setLeft(true)
 
@@ -38,10 +39,13 @@ function CardDisplay({}){
 
     }
 
+    // localStorage.setItem("key", JSON.stringify(cards));
 
+
+
+    // Setter to update a value inside of the flashcard. Passed into the
+    // flashcard component
     const updateCurrentCard = (k,v) => {
-        console.log(k,v);
-        console.log(cards);
         setCards(cards.map((c,i) =>{
             if (i == currentCard){
                 return {...c, [k]:v};
@@ -123,13 +127,20 @@ function CardDisplay({}){
                     }
                     setCurrentCard(clamp(currentCard-1,0,cards.length-1));
                 }}
-                type="button" className="btn trashcan-button">
+                type="button" className="btn custom-button-base trashcan-button">
                     {React.cloneElement(icons.trashcanIcon, {style: {color: 'whitesmoke'}})}
                 </button>
+
                 <button 
                 onClick = { () => {setCards([...cards,createCard("","")])}}
-                type="button" className="btn add-button">
+                type="button" className="btn custom-button-base add-button">
                     {React.cloneElement(icons.plusIcon, {style: {color: 'whitesmoke'}})}
+                </button>
+
+                <button 
+                // onClick = {}
+                type="button" className="btn custom-button-base save-button">
+                    {React.cloneElement(icons.saveIcon, {style: {color: 'whitesmoke'}})}
                 </button>
             </div>
 

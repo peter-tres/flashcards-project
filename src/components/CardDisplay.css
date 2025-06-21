@@ -1,8 +1,16 @@
-.trashcan-button, .trashcan-button:focus{
+.custom-button-base, .custom-button-base:focus{
   min-width: 60px;
   min-height: 60px;
+  border-color: transparent!important;
+
+}
+
+.custom-button-base:active{
+  transform: scale(0.95);
+}
+
+.trashcan-button, .trashcan-button:focus{
   background-color: lightcoral;
-  border-color: transparent !important;
 }
 
 
@@ -12,14 +20,10 @@
 
 .trashcan-button:active{
   background-color: firebrick !important;
-  transform: scale(0.95);
 }
 
 .add-button, .add-button:focus{
-  min-width: 60px;
-  min-height: 60px;
   background-color: cornflowerblue;
-  border-color: transparent !important;
 }
 
 .add-button:hover{
@@ -28,8 +32,21 @@
 
 .add-button:active{
   background-color: dodgerblue !important;
-  transform: scale(0.95);
 }
+
+
+.save-button, .save-button:focus{
+  background-color: mediumaquamarine;
+}
+
+.save-button:hover{
+  background-color: rgb(141, 238, 206);
+}
+
+.save-button:active{
+  background-color: seagreen !important;
+}
+
 
 
 .arrow-button, .arrow-button:focus{
