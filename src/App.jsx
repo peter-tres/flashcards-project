@@ -12,23 +12,28 @@ import CardInterface from './components/CardInterface'
 
 function App() {
 
-
+  let existing_sets = 0;
   const [sets, setSets] = useState(
+      existing_sets? {"Set": []}
+      :
       {
-        "Set1": [],
-        "Set2": [],
-        "Set3": []
+        "My First Set": []
       }
   );
 
+  const [selectedSet, setSelectedSet] = useState(
+    existing_sets? "TODO" : "My First Set"
+  );
 
   const addSet = (name) => {
     setSets({
       ...sets,
-      name: []
-    })
+      [name]: []
+    });
   }
 
+  console.log(selectedSet);
+  console.log(sets);
 
   return (
     <>
@@ -36,7 +41,10 @@ function App() {
     <Header/>
     <div className="row main-row d-flex">
       <div className="col-12 mb-5">
-      <ActionPanel sets={sets} setter={addSet} />
+      <ActionPanel
+      sets={sets}
+      add_to_set={addSet}
+      set_selected_set={setSelectedSet}/>
       </div>
       <div className="col-12">
       <CardInterface/>

@@ -9,17 +9,16 @@ import {useState} from 'react';
 
 let nextId=0;
 
-function ActionPanel({sets, setter}){
-
+function ActionPanel({sets, add_to_set,set_selected_set}){
 
 
     const handleSelectedSet = (e) => {
         if (!e) return;
-        console.log(e);
+        set_selected_set(e)
 
     };
 
-
+    let id = Object.keys(sets).length + 1;
     return(
     <>
 
@@ -34,7 +33,10 @@ function ActionPanel({sets, setter}){
                         (key,i)=> (<Dropdown.Item className= "button-activate" key={i} eventKey={key}>{key}</Dropdown.Item>)
                         )}
 
-                    <DropdownItem onClick = { () => setter(`NewSet ${nextId++}`)} className="button-activate">New Set</DropdownItem>
+                    <DropdownItem
+                    key={`NewSet${id}`}
+                    eventKey={`NewSet${id}`}
+                    onClick = { () => add_to_set(`NewSet${id}`)} className="button-activate">New Set</DropdownItem>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
