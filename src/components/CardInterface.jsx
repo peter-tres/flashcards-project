@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './CardDisplay.css'
+import './CardInterface.css'
 import FlashCard from './Flashcard';
 import { logos, icons } from '../assets/images';
 
@@ -16,7 +16,7 @@ const createCard = ( question, answer) => ({
 });
 
 
-function CardDisplay({}){
+function CardInterface({}){
     const [cards, setCards] = useState([createCard("","")]);
     const [currentCard,setCurrentCard] = useState(0);
     const [doRight, setRight] = useState(false);
@@ -56,6 +56,15 @@ function CardDisplay({}){
 
     return(
     <>
+        <div className="row justify-content-center mb-5">
+            <input
+            className="w-50 form-control text-center fs-3"
+            type="text"
+            placeholder="Set Name"
+            // value={card_info.answer} onChange={(e) => handleChange(e, "answer")}
+            >
+            </input>
+        </div>
 
         <div className="row justify-content-center mb-5">
             
@@ -135,4 +144,4 @@ function CardDisplay({}){
 }
 
 
-export default CardDisplay;
+export default CardInterface;

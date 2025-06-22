@@ -6,29 +6,28 @@ import './App.css'
 import PFooter from './components/PFooter'
 import Header from './components/Header'
 import ActionPanel from './components/ActionPanel'
-import CardDisplay from './components/CardDisplay'
+import CardInterface from './components/CardInterface'
 
 
 
 function App() {
 
 
-  const loadData = () => {
-    console.log("Load data");
+  const [sets, setSets] = useState(
+      {
+        "Set1": [],
+        "Set2": [],
+        "Set3": []
+      }
+  );
 
 
+  const addSet = (name) => {
+    setSets({
+      ...sets,
+      name: []
+    })
   }
-
-  const saveData = () => {
-    console.log("Save data")
-  }
-
-
-
-
-    useEffect( () => {
-      loadData();
-    }, []);
 
 
   return (
@@ -37,10 +36,10 @@ function App() {
     <Header/>
     <div className="row main-row d-flex">
       <div className="col-12 mb-5">
-      <ActionPanel/>
+      <ActionPanel sets={sets} setter={addSet} />
       </div>
       <div className="col-12">
-      <CardDisplay/>
+      <CardInterface/>
       </div>
     </div>
 
