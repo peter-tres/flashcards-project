@@ -9,23 +9,18 @@ function clamp(num, min, max) {
 }
 
 
-const createCard = ( question, answer) => ({
-    question,
-    answer
-
-});
 
 
-function CardInterface({}){
-    const [cards, setCards] = useState([createCard("","")]);
-    const [currentCard,setCurrentCard] = useState(0);
+function CardInterface(
+    {cards,
+    deleteCardFunc , addCardFunc,updateCardFunc,
+    card_set_id, card_index, card_index_setter}){
+    
     const [doRight, setRight] = useState(false);
     const [doLeft, setLeft] = useState(false);
-
-
     // Left and right arrows to flick through cards
     const handleArrowClick = (e,update) => {
-        setCurrentCard(clamp(currentCard+update,0,cards.length-1));
+        card_index_setter(clamp(card_index+update,0,cards.length-1));
         if (update < 0){
             setLeft(true)
 
@@ -36,23 +31,9 @@ function CardInterface({}){
 
             setTimeout( () => setRight(false), 150);
         }
-
     }
 
-
-    // Setter to update a value inside of the flashcard. Passed into the
-    // flashcard component
-    const updateCurrentCard = (k,v) => {
-        setCards(cards.map((c,i) =>{
-            if (i == currentCard){
-                return {...c, [k]:v};
-                }
-            else{
-                return c;
-                }
-            })
-        )
-    }
+    let card_info = cards[card_index];
 
     return(
     <>
@@ -60,17 +41,18 @@ function CardInterface({}){
             <input
             className="w-50 form-control text-center fs-3"
             type="text"
-            placeholder="Set Name"
-            // value={card_info.answer} onChange={(e) => handleChange(e, "answer")}
+            placeholder={card_set_id}
             >
             </input>
         </div>
 
         <div className="row justify-content-center mb-5">
-            
-            
             <div className={`col-lg-8 ${doLeft? "slide-left": ""} ${doRight? "slide-right": ""}`}>
-                <FlashCard cards={cards} index={currentCard} setter={updateCurrentCard} />
+                <FlashCard
+                card_index={card_index}
+                updateCardFunc={updateCardFunc}
+                card_set_id={card_set_id}
+                card_info={card_info}/>
             </div>
             
 
@@ -82,21 +64,21 @@ function CardInterface({}){
                 <div className="row d-flex align-items-center">
                     <div className="col px-0 d-flex justify-content-center">
                         <button 
-                        disabled={currentCard == 0}
+                        disabled={card_index == 0}
                         onClick={(e) => handleArrowClick(e,-1)}
                         type="button" className={"btn arrow-button"}>
-                            { currentCard == 0? React.cloneElement(icons.leftArrowIcon, { className: 'arrow-disabled'}) : icons.leftArrowIcon}
+                            { card_index == 0? React.cloneElement(icons.leftArrowIcon, { className: 'arrow-disabled'}) : icons.leftArrowIcon}
                         </button>
                     </div>
                     <div className="col-4 d-flex justify-content-center">
-                        <p className="mt-3"> {currentCard+1} / {cards.length}</p>
+                        <p className="mt-3"> {card_index+1} / {cards.length}</p>
                     </div>
                     <div className="col px-0 d-flex justify-content-center">
                         <button
-                        disabled={currentCard == cards.length-1}
+                        disabled={card_index == cards.length-1}
                         onClick={(e) => handleArrowClick(e,1)}
                         type="button" className="btn arrow-button">
-                            { currentCard == cards.length-1? React.cloneElement(icons.rightArrowIcon, {className: 'arrow-disabled'}): icons.rightArrowIcon}
+                            { card_index == cards.length-1? React.cloneElement(icons.rightArrowIcon, {className: 'arrow-disabled'}): icons.rightArrowIcon}
                         </button>
                     </div>
                 </div>
@@ -110,22 +92,13 @@ function CardInterface({}){
 
             <div className="col-2 col-lg-2 d-flex justify-content-center align-items-center gap-5">
                 <button 
-                onClick = {() => {
-                    if (cards.length > 1){
-                        setCards(
-                            cards.filter((element, index) =>{
-                                return index != currentCard;
-                            })
-                        )
-                    }
-                    setCurrentCard(clamp(currentCard-1,0,cards.length-1));
-                }}
+                onClick = { () => deleteCardFunc(card_set_id)}
                 type="button" className="btn custom-button-base trashcan-button">
                     {React.cloneElement(icons.trashcanIcon, {style: {color: 'whitesmoke'}})}
                 </button>
 
                 <button 
-                onClick = { () => {setCards([...cards,createCard("","")])}}
+                onClick = { () => addCardFunc(card_set_id) }
                 type="button" className="btn custom-button-base add-button">
                     {React.cloneElement(icons.plusIcon, {style: {color: 'whitesmoke'}})}
                 </button>

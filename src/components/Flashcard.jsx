@@ -5,10 +5,9 @@ import SliderCheckbox from './SliderCheckbox';
 
 
 
-function FlashCard({cards,index, setter}){
+function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
     const [isEdit, setEdit] = React.useState(false);
     const [cardFlip, setCardFlip] = React.useState(false);
-    let card_info = cards[index];
     
     const toggleClick = () =>{
         setEdit(!isEdit);
@@ -18,10 +17,10 @@ function FlashCard({cards,index, setter}){
 
     const handleChange = (e, side) => {
         if (side == "question"){
-            setter("question", e.target.value)
+            updateCardFunc(card_set_id, "question", e.target.value)
         }
         else if (side == "answer"){
-            setter("answer", e.target.value);
+            updateCardFunc(card_set_id, "answer", e.target.value);
         }
     }
 

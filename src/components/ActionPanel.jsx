@@ -36,7 +36,7 @@ function ActionPanel({sets, add_to_set,set_selected_set}){
                     <DropdownItem
                     key={`NewSet${id}`}
                     eventKey={`NewSet${id}`}
-                    onClick = { () => add_to_set(`NewSet${id}`)} className="button-activate">New Set</DropdownItem>
+                    onClick = { () => add_to_set(`NewSet${id}`)} className="button-activate">{React.cloneElement(icons.plusIcon,{style: {color: 'dimgray', width: '20px'}})}</DropdownItem>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
