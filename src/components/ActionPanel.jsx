@@ -13,8 +13,8 @@ function ActionPanel({sets, add_to_set,set_selected_set}){
 
 
     const handleSelectedSet = (e) => {
-        if (!e) return;
-        set_selected_set(e)
+        if (!e || !(e in sets)) return;
+        set_selected_set(e);
 
     };
 
@@ -30,7 +30,7 @@ function ActionPanel({sets, add_to_set,set_selected_set}){
 
                 <Dropdown.Menu className="text-center centered-menu">
                     {Object.keys(sets).map(
-                        (key,i)=> (<Dropdown.Item className= "button-activate" key={i} eventKey={key}>{key}</Dropdown.Item>)
+                        (key,i)=> (<Dropdown.Item className= "button-activate" key={i} eventKey={key}>{sets[key].set_name}</Dropdown.Item>)
                         )}
 
                     <DropdownItem

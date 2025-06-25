@@ -15,26 +15,39 @@ const createCard = ( question = "", answer = "") => ({
 
 });
 
-const createSet = (set_name) => ({
-  id: Date.now().toString(),
-  set_name,
+const createSet = (set_name="SetName", id=createSetID()) => ({
+  id: id,
+  set_name: set_name,
   cards: [createCard()]
 
 })
 
+// I will probably change this in the future.
+function createSetID() {
+  return Date.now().toString();
+}
 
 function clamp(num, min, max) {
     return Math.min(Math.max(num,min),max);
 }
 
 
+
 function App() {
 
-  let existing_sets = 0;
+  const [sets, setSets] = useState(
+    () => {
+      let id = createSetID();
+      
+      return {[id]: createSet("My First Set", id)}
+    }
+
+  );
 
   const [currentCard,setCurrentCard] = useState(0);
 
-  const [selectedSet, setSelectedSet] = useState(existing_sets? "TODO" : "My First Set");
+  const [selectedSet, setSelectedSet] = useState(Object.keys(sets)[0]);
+
 
   const switchToSet = (set_name) => {
     setCurrentCard(0);
@@ -42,69 +55,75 @@ function App() {
 
   }
 
-  const [sets, setSets] = useState(
-      existing_sets? {"Set": []}
-      :
-      {
-        "My First Set": [createCard()]
+
+  const renameSet = (id,name) => {
+    setSets({
+      ...sets,
+      [id]: {
+        ...sets[id],
+        set_name: name
       }
-  );
-
-  const renameSet = (name) => {
-    console.log("Rename logic TODO");
+    })
     
-
   }
 
   const addSet = (name) => {
+    let new_set = createSet(name);
     setSets({
       ...sets,
-      [name]: [createCard("","")]
+      [new_set.id]: new_set
     });
+    setSelectedSet(new_set.id);
+
   }
 
   const addCard = (id) => {
-    setSets({
-      ...sets,
-      [id]: [...sets[id], createCard("","")]
-    })
-    setCurrentCard(cards.length);
+    setSets(
+      {
+        ...sets,
+        [id]: {
+          ...sets[id],
+          cards: [...sets[id].cards, createCard()]
+        }
+      }
+
+
+    )
+    setCurrentCard(sets[selectedSet].cards.length);
   }
 
   const deleteCurrentCard = (id) => {
-    let cards = sets[id];
-    if (cards.length < 2) return;
+    if (sets[selectedSet].cards.length < 2) return;
+
+    setSets(
+      {
+        ...sets,
+        [id]:{
+          ...sets[id],
+          cards: sets[id].cards.filter((c,i)=> {return i != currentCard})
+        }
+      }
+    )
 
 
-
-    setSets({
-      ...sets,
-      [id]: sets[id].filter((c,i)=> {return i != currentCard})
-    })
-
-    if (cards.length-1 == currentCard){
-      setCurrentCard(clamp(currentCard-1,0,cards.length-1));
+    if (sets[selectedSet].cards.length-1 == currentCard){
+      setCurrentCard(
+        clamp(currentCard-1,0,sets[selectedSet].cards.length-1));
     }
 
   }
 
   const updateCurrentCard = (id,k,v) => {
-    console.log(id,k,v);
     setSets({
       ...sets,
-      [id]: sets[id].map( (c,i) =>
-        i == currentCard? {...c, [k]:v} : c
-      )
-
-    });
+      [id]: {
+        ...sets[id],
+        cards: sets[id].cards.map((c,i)=> i==currentCard? {...c, [k]:v}:c)
+      }
+    })
   }
-
   
-  let cards = sets[selectedSet];
 
-  console.log("Sets", sets);
-  console.log("Selected Set:", selectedSet);
-  console.log("Cards:", cards);
 
   return (
     <>
@@ -121,7 +140,8 @@ function App() {
 
       <div className="col-12">
       <CardInterface
-      cards={cards}
+      sets={sets}
+      cards={sets[selectedSet].cards}
       renameSetFunc={renameSet}
       deleteCardFunc={deleteCurrentCard}
       addCardFunc={addCard}
