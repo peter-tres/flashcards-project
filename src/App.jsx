@@ -9,11 +9,19 @@ import ActionPanel from './components/ActionPanel'
 import CardInterface from './components/CardInterface'
 
 
-const createCard = ( question, answer) => ({
+const createCard = ( question = "", answer = "") => ({
     question,
     answer
 
 });
+
+const createSet = (set_name) => ({
+  id: Date.now().toString(),
+  set_name,
+  cards: [createCard()]
+
+})
+
 
 function clamp(num, min, max) {
     return Math.min(Math.max(num,min),max);
@@ -28,13 +36,25 @@ function App() {
 
   const [selectedSet, setSelectedSet] = useState(existing_sets? "TODO" : "My First Set");
 
+  const switchToSet = (set_name) => {
+    setCurrentCard(0);
+    setSelectedSet(set_name);
+
+  }
+
   const [sets, setSets] = useState(
       existing_sets? {"Set": []}
       :
       {
-        "My First Set": [createCard("","")]
+        "My First Set": [createCard()]
       }
   );
+
+  const renameSet = (name) => {
+    console.log("Rename logic TODO");
+    
+
+  }
 
   const addSet = (name) => {
     setSets({
@@ -81,6 +101,7 @@ function App() {
 
   
   let cards = sets[selectedSet];
+
   console.log("Sets", sets);
   console.log("Selected Set:", selectedSet);
   console.log("Cards:", cards);
@@ -95,12 +116,13 @@ function App() {
       <ActionPanel
       sets={sets}
       add_to_set={addSet}
-      set_selected_set={setSelectedSet}/>
+      set_selected_set={switchToSet}/>
       </div>
 
       <div className="col-12">
       <CardInterface
       cards={cards}
+      renameSetFunc={renameSet}
       deleteCardFunc={deleteCurrentCard}
       addCardFunc={addCard}
       updateCardFunc={updateCurrentCard}

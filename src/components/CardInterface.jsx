@@ -13,9 +13,13 @@ function clamp(num, min, max) {
 
 function CardInterface(
     {cards,
-    deleteCardFunc , addCardFunc,updateCardFunc,
+    renameSetFunc,deleteCardFunc , addCardFunc,updateCardFunc,
     card_set_id, card_index, card_index_setter}){
     
+    const handleOnChange = (e) => {
+        renameSetFunc(e.target.value);
+    }
+
     const [doRight, setRight] = useState(false);
     const [doLeft, setLeft] = useState(false);
     // Left and right arrows to flick through cards
@@ -39,9 +43,11 @@ function CardInterface(
     <>
         <div className="row justify-content-center mb-5">
             <input
+            onChange={(e) => handleOnChange(e)}
             className="w-50 form-control text-center fs-3"
             type="text"
-            placeholder={card_set_id}
+            placeholder='Set Name'
+            value={card_set_id}
             >
             </input>
         </div>
