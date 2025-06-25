@@ -32,22 +32,34 @@ function clamp(num, min, max) {
 }
 
 
+function loadData(){
+  const data = JSON.parse(localStorage.getItem("data"));
+  return data
+}
+
+function initializeSets(){
+  const data = loadData();
+
+  let id = createSetID();
+  let new_set = {[id]: createSet("My First Set", id)}
+
+
+  return data? data : new_set
+}
+
 
 function App() {
 
-  const [sets, setSets] = useState(
-    () => {
-      let id = createSetID();
-      
-      return {[id]: createSet("My First Set", id)}
-    }
 
-  );
 
+  const [sets, setSets] = useState(()=>initializeSets());
   const [currentCard,setCurrentCard] = useState(0);
-
   const [selectedSet, setSelectedSet] = useState(Object.keys(sets)[0]);
 
+  const saveData = () => {
+    localStorage.setItem("data", JSON.stringify(sets));
+
+  }
 
   const switchToSet = (set_name) => {
     setCurrentCard(0);
@@ -64,7 +76,25 @@ function App() {
         set_name: name
       }
     })
-    
+
+  }
+
+  const deleteSet = (id) => {
+
+    if (Object.keys(sets).length < 2) return;
+
+    const new_sets = {...sets};
+    delete new_sets[id];
+
+
+    const keys = Object.keys(new_sets);
+
+    const new_selected =
+    id == selectedSet ? keys[keys.length-1] : selectedSet;
+
+    setSelectedSet(new_selected);
+    setSets(new_sets);
+
   }
 
   const addSet = (name) => {
@@ -73,7 +103,10 @@ function App() {
       ...sets,
       [new_set.id]: new_set
     });
+    
     setSelectedSet(new_set.id);
+    
+
 
   }
 
@@ -86,10 +119,9 @@ function App() {
           cards: [...sets[id].cards, createCard()]
         }
       }
-
-
     )
     setCurrentCard(sets[selectedSet].cards.length);
+
   }
 
   const deleteCurrentCard = (id) => {
@@ -121,7 +153,17 @@ function App() {
         cards: sets[id].cards.map((c,i)=> i==currentCard? {...c, [k]:v}:c)
       }
     })
+
   }
+
+
+  useEffect(() => {
+    if (!(selectedSet in sets)) {
+      setSelectedSet(Object.keys(sets)[0])
+    }
+    saveData();
+
+  },[sets, selectedSet])
   
 
 
@@ -135,7 +177,8 @@ function App() {
       <ActionPanel
       sets={sets}
       add_to_set={addSet}
-      set_selected_set={switchToSet}/>
+      set_selected_set={switchToSet}
+      />
       </div>
 
       <div className="col-12">
@@ -148,7 +191,8 @@ function App() {
       updateCardFunc={updateCurrentCard}
       card_set_id={selectedSet}
       card_index={currentCard}
-      card_index_setter={setCurrentCard}/>
+      card_index_setter={setCurrentCard}
+      deleteSetFunc={deleteSet}/>
       </div>
 
     </div>

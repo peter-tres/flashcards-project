@@ -30,7 +30,7 @@ function ActionPanel({sets, add_to_set,set_selected_set}){
 
                 <Dropdown.Menu className="text-center centered-menu">
                     {Object.keys(sets).map(
-                        (key,i)=> (<Dropdown.Item className= "button-activate" key={i} eventKey={key}>{sets[key].set_name}</Dropdown.Item>)
+                        (key,i)=> (<Dropdown.Item className= "button-activate overflow-hidden" key={i} eventKey={key}>{sets[key].set_name? sets[key].set_name: "Set"}</Dropdown.Item>)
                         )}
 
                     <DropdownItem

@@ -14,7 +14,7 @@ function clamp(num, min, max) {
 function CardInterface(
     {cards, sets,
     renameSetFunc,deleteCardFunc , addCardFunc,updateCardFunc,
-    card_set_id, card_index, card_index_setter}){
+    card_set_id, card_index, card_index_setter, deleteSetFunc}){
     
     const handleOnChange = (e, card_set_id) => {
         renameSetFunc(card_set_id, e.target.value);
@@ -42,14 +42,26 @@ function CardInterface(
     return(
     <>
         <div className="row justify-content-center mb-5">
-            <input
-            onChange={(e) => handleOnChange(e, card_set_id)}
-            className="w-50 form-control text-center fs-3"
-            type="text"
-            placeholder='Set Name'
-            value={sets[card_set_id].set_name}
-            >
-            </input>
+                <div className="col-12 input-container d-flex justify-content-center">
+                    <div className="position-relative">
+                    <input
+                    onChange={(e) => handleOnChange(e, card_set_id)}
+                    className="form-control text-center fs-3 py-3"
+                    type="text"
+                    placeholder='Set Name'
+                    value={sets[card_set_id].set_name}>
+                    </input>
+
+                    <button
+                    onClick={() => deleteSetFunc(card_set_id)}
+                    type="button" className="btn custom-button-base deleteset-button position-absolute end-0 top-50 translate-middle-y me-2">
+                        {React.cloneElement(icons.trashcanIcon)}
+                    </button>
+                    </div>
+
+                </div>
+
+
         </div>
 
         <div className="row justify-content-center mb-5">
@@ -109,11 +121,11 @@ function CardInterface(
                     {React.cloneElement(icons.plusIcon, {style: {color: 'whitesmoke'}})}
                 </button>
 
-                <button 
+                {/* <button 
                 // onClick = {}
                 type="button" className="btn custom-button-base save-button">
                     {React.cloneElement(icons.saveIcon, {style: {color: 'whitesmoke'}})}
-                </button>
+                </button> */}
             </div>
 
 
