@@ -55,7 +55,7 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
                             }
 
                             <div className="position-absolute">
-                                <SliderCheckbox event={toggleClick}/>
+                                <SliderCheckbox event={toggleClick} mode={isEdit}/>
                             </div>
                             
                         </div>
@@ -82,7 +82,7 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
                             }
 
                             <div className="position-absolute">
-                                <SliderCheckbox event={toggleClick}/>
+                                <SliderCheckbox event={toggleClick} mode={isEdit}/>
                             </div>
                             
                         </div>

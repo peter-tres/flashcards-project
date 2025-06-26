@@ -2,16 +2,14 @@ import React from 'react'
 import './SliderCheckbox.css'
 
 
-function SliderCheckbox({event}){
-    const [active, setActive] = React.useState(false)
-
+function SliderCheckbox({event, mode}){
 
     const uniqueID = React.useId();
     return(
         
         <div className="slider_container">
         <label className="switch" htmlFor={uniqueID}>
-            <input type="checkbox" id={uniqueID} onClick={event}/>
+            <input type="checkbox" id={uniqueID} onClick={event} checked={mode}/>
             <div className={`slider round`}></div>
         </label>
         </div>
