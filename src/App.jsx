@@ -92,7 +92,7 @@ function App() {
     const new_selected =
     id == selectedSet ? keys[keys.length-1] : selectedSet;
 
-    setSelectedSet(new_selected);
+    switchToSet(new_selected);
     setSets(new_sets);
 
   }
