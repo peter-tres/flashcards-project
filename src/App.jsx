@@ -104,7 +104,7 @@ function App() {
       [new_set.id]: new_set
     });
     
-    setSelectedSet(new_set.id);
+    switchToSet(new_set.id);
     
 
 
