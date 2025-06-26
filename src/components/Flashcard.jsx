@@ -15,6 +15,7 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
     }
     
 
+
     const handleChange = (e, side) => {
         if (side == "question"){
             updateCardFunc(card_set_id, "question", e.target.value)
@@ -24,10 +25,8 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
         }
     }
 
-    const handleCardClick = () =>{
-        if (!isEdit){
-            setCardFlip(!cardFlip);
-        }
+    const handleCardClick = (e) =>{
+        setCardFlip(!cardFlip);
     }
 
     return(
@@ -40,6 +39,7 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
                             {isEdit?
                             <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
                                 <input
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-100 form-control text-center fs-3"
                                 type="text"
                                 placeholder="Type your question here"
@@ -66,6 +66,7 @@ function FlashCard({card_index, updateCardFunc, card_set_id, card_info}){
                             {isEdit?
                             <div className="w-100 h-100 px-5 py-5 d-flex align-items-center">
                                 <input
+                                onClick={(e) => e.stopPropagation()}
                                 className="w-100 form-control text-center fs-3"
                                 type="text"
                                 placeholder="Type your answer here"
